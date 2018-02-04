@@ -6,7 +6,6 @@ FLAGS = -Wall -Werror -Wextra
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
-
 all: $(NAME)
 
 $(NAME):
@@ -15,7 +14,6 @@ $(NAME):
 
 clean:
 	/bin/rm -f $(OBJS)
-
 
 fclean: clean
 	/bin/rm -f $(NAME)
