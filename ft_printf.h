@@ -6,11 +6,14 @@
 /*   By: areid <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 12:27:49 by areid             #+#    #+#             */
-/*   Updated: 2018/02/03 12:27:50 by areid            ###   ########.fr       */
+/*   Updated: 2018/02/04 15:00:09 by areid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
+#include <unistd.h>
+#include <stdarg.h>
 
 #endif
