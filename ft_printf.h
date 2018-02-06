@@ -15,5 +15,8 @@
 
 #include <unistd.h>
 #include <stdarg.h>
+//#include "libft/libft.a"
+
+int	ft_atoi(const char *s);
 
 #endif
