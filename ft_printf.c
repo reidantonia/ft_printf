@@ -12,6 +12,7 @@
 
 #include "ft_printf.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void	ft_putchar(char c)
 {
@@ -32,6 +33,8 @@ void	ft_printf(char *str, ...)
 		int i;
 		int	argnum;
 		va_list argptr;
+		char *ret;
+		char **argus;
 
 		va_start(argptr, str);
 		i = 0;
@@ -43,36 +46,43 @@ void	ft_printf(char *str, ...)
 				i++;
 		}
 
-		/*i = 1;
-		  while (i <= num_count)
-		  {
-		  char *str = va_arg(argptr, char *);
-		  printf("%s",str);
-		  i++;
-		  }
+printf("num of args is %d\n", argnum);
+*argus = ft_strnew(argnum);
+		i = 1;
+		while (i <= argnum)
+		{
+				ret = (va_arg(argptr, char *));
+				printf("%s\n", ret);
+				i++;
+		}
+/*
+		 int i;
 
-		  int i;
-
-		  i = 0;
-		  while (str && str[i] != '\0')
-		  {
-		  if (str[i] == '%')
-		  {
-		  i++;
-		  }
-		  i++;
-		  }
-		  ft_print_str(str);*/
+			i = 0;
+			while (str && str[i] != '\0')
+			{
+			if (str[i] == '%')
+			{
+			i++;
+			}
+			i++;
+			}
+			ft_print_str(str);*/
 }
 
 int main()
 {
 		int		num;
+		char *dog;
+		char *cat;
+char *hii;
+
+hii = "num";
 
 		num = 2;
 		printf("Me\nComp\n\n");
 		//	ft_printf("HELLO\n%d");
-		ft_printf("HELLO %d\n", num);
+		ft_printf("HELLO %d%%\n", hii, cat, dog);
 		printf("HELLO %d\n", num);
 		return (0);
 }

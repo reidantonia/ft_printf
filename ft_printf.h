@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+i/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
@@ -14,9 +14,11 @@
 # define FT_PRINTF_H
 
 #include <unistd.h>
+#include <stdlib.h>
 #include <stdarg.h>
 //#include "libft/libft.a"
 
-int	ft_atoi(const char *s);
+int	ft_atoi(const char *s);   //remove when have lib
+char *ft_strnew(size_t size); //////remove later
 
 #endif
