@@ -46,43 +46,30 @@ void	ft_printf(char *str, ...)
 				i++;
 		}
 
-printf("num of args is %d\n", argnum);
-*argus = ft_strnew(argnum);
-		i = 1;
+		printf("num of args is %d\n", argnum);
+		i = 0;
 		while (i <= argnum)
 		{
-				ret = (va_arg(argptr, char *));
-				printf("%s\n", ret);
+				printf("\ni is %d\n", i);
+				puts(str);
+				str = va_arg(argptr, char *);
 				i++;
 		}
-/*
-		 int i;
-
-			i = 0;
-			while (str && str[i] != '\0')
-			{
-			if (str[i] == '%')
-			{
-			i++;
-			}
-			i++;
-			}
-			ft_print_str(str);*/
+		va_end(argptr);
 }
 
 int main()
 {
 		int		num;
-		char *dog;
-		char *cat;
-char *hii;
+		char *dog = "dogstr";
+		char *cat = "catstr";
+		char *hii = "hiistr";
 
-hii = "num";
 
 		num = 2;
 		printf("Me\nComp\n\n");
 		//	ft_printf("HELLO\n%d");
-		ft_printf("HELLO %d%%\n", hii, cat, dog);
-		printf("HELLO %d\n", num);
+		ft_printf("HELLO %s %s %s \n", hii, cat, dog);
+		printf("\n\nHELLO %d\n", num);
 		return (0);
 }
