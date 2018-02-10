@@ -18,6 +18,13 @@
 #include <stdarg.h>
 //#include "libft/libft.a"
 
+typedef structs
+{
+	char fid;
+	char flag;
+}
+
+
 int	ft_atoi(const char *s);   //remove when have lib
 char *ft_strnew(size_t size); //////remove later
 char *ft_strdup(const char *src);
