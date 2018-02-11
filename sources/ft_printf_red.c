@@ -6,7 +6,7 @@
 /*   By: areid <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 12:27:21 by areid             #+#    #+#             */
-/*   Updated: 2018/02/11 13:17:11 by areid            ###   ########.fr       */
+/*   Updated: 2018/02/11 17:52:39 by areid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ t_args	ft_process(char *str)
 	int		i;
 
 	i = 0;
+	printf("the string is: '%s'\n", str);
 	if (str[0] == 's')
 	{
 		arg.id = 's';
 		arg.code_length = 1;
 		i++;
+		printf("arg.id is '%c'\n", arg.id);
 		return (arg);
 	}
 	else if (str[0] == '-' && str[i] != '\0')
@@ -49,9 +51,11 @@ t_args	ft_process(char *str)
 
 void	ft_print_arg(t_args arg, char *str)
 {
-	printf("%s", str);fflush(stdout);
 	if (arg.id == 's')
+	{
 		ft_putstr(str);
+//	printf("%s", str);fflush(stdout);
+}
 }
 
 void	ft_printf(char *str, ...)
@@ -83,6 +87,7 @@ void	ft_printf(char *str, ...)
 		}
 		if (str[i] == '%')
 		{
+			i++;
 			argnum++;
 			arg[argnum] = ft_process(ft_strsub(str, i, ft_strlen(str)));
 			ft_print_arg(arg[argnum], va_arg(argptr, char*));
