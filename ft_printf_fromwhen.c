@@ -6,7 +6,7 @@
 /*   By: areid <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 12:27:49 by areid             #+#    #+#             */
-/*   Updated: 2018/02/10 22:03:28 by areid            ###   ########.fr       */
+/*   Updated: 2018/02/11 11:08:15 by areid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
-//#include "libft/libft.a"
+#include "libft.h"
 
 typedef struct		s_args
 {
@@ -31,8 +31,8 @@ typedef struct		s_args
 }					t_args;
 
 
-int		ft_atoi(const char *s);   //remove when have lib
-char	*ft_strnew(size_t size); //////remove latr
+int		ft_atoi(const char *s);
+char	*ft_strnew(size_t size);
 char	*ft_strdup(const char *src);
 int		ft_isdigit(int c);
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
