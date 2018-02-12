@@ -6,7 +6,7 @@
 /*   By: areid <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 12:27:21 by areid             #+#    #+#             */
-/*   Updated: 2018/02/11 17:52:39 by areid            ###   ########.fr       */
+/*   Updated: 2018/02/12 11:31:36 by areid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ t_args	ft_process(char *str)
 	int		i;
 
 	i = 0;
-	printf("the string is: '%s'\n", str);
+	//printf("The string is '%c'\n", str[0]);
 	if (str[0] == 's')
 	{
 		arg.id = 's';
-		arg.code_length = 1;
+		arg.code_length = 2;
+	//	printf("arg.id is '%c'\n", arg.id);
 		i++;
-		printf("arg.id is '%c'\n", arg.id);
 		return (arg);
 	}
 	else if (str[0] == '-' && str[i] != '\0')
@@ -54,20 +54,21 @@ void	ft_print_arg(t_args arg, char *str)
 	if (arg.id == 's')
 	{
 		ft_putstr(str);
-//	printf("%s", str);fflush(stdout);
-}
+	}
 }
 
-void	ft_printf(char *str, ...)
+void	ft_printf(char *argstr, ...)
 {
 	int			i;
 	int			argnum;
 	va_list		argptr;
 	t_args		*arg;
+	char		*str;
 
-	va_start(argptr, str);
+	va_start(argptr, argstr);
 	i = 0;
 	argnum = 0;
+	str = ft_strdup(argstr);
 	while (str && str[i] != '\0')
 	{
 		if (str[i] == '%')
@@ -78,6 +79,7 @@ void	ft_printf(char *str, ...)
 	arg = (t_args*)ft_strnew(argnum + 1);
 	i = 0;
 	argnum = 0;
+	printf("original: '%s'\n\n", str);
 	while (str && str[i] != '\0')
 	{
 		while (str && str[i] != '\0' && str[i] != '%')
@@ -87,11 +89,14 @@ void	ft_printf(char *str, ...)
 		}
 		if (str[i] == '%')
 		{
-			i++;
 			argnum++;
 			arg[argnum] = ft_process(ft_strsub(str, i, ft_strlen(str)));
-			ft_print_arg(arg[argnum], va_arg(argptr, char*));
+			printf("\nargnum is %d\nstr is %s\n", argnum, str);
+			ft_print_arg(arg[argnum], str);
+			str = va_arg(argptr, char *);
+		//	i++;
 			i = i + arg[argnum].code_length;
+			//printf("I'M HERE");fflush(stdout);
 		}
 		i++;
 	}
