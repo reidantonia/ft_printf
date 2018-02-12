@@ -64,7 +64,7 @@ SRCS  = ft_memset.c		\
 		  ft_str_is_printable.c	\
 		  ft_str_is_uppercase.c	\
 
-INCLUDE = libft.h
+INCLUDE = include
 
 OBJS = $(SRCS:.c=.o)
 
