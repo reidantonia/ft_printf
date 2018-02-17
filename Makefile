@@ -10,13 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = libftprintf
 
 SRC_PATH = sources
 
 SRC_NAME = ft_printf.c main.c
 
-CPPFLAGS = -Isources
+CPPFLAGS = -Iincludes
 
 OBJ_PATH = sources
 
