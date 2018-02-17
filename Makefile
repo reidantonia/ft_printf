@@ -26,6 +26,8 @@ CC = gcc
 
 LDFLAGS = -Llibft
 
+LIBHEAD = -L /libft/include/
+
 LDLIBS = -lft
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
@@ -37,7 +39,7 @@ all : $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/ fclean && make -C libft/
-	$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
+	$(CC) $(LDFLAGS) $(LDLIBS) $(LIBHEAD) $^ -o $@
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null
