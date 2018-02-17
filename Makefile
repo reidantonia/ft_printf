@@ -14,7 +14,7 @@ NAME = libftprintf.a
 
 SRC_PATH = sources
 
-SRC_NAME = ft_printf_red.c main.c
+SRC_NAME = ft_printf.c main.c
 
 CPPFLAGS = -Isources
 
@@ -25,8 +25,6 @@ CFLAGS = -Wall -Werror -Wextra
 CC = gcc
 
 LDFLAGS = -Llibft
-
-LIBHEAD = -L /libft/include/
 
 LDLIBS = -lft
 
@@ -39,7 +37,7 @@ all : $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/ fclean && make -C libft/
-	$(CC) $(LDFLAGS) $(LDLIBS) $(LIBHEAD) $^ -o $@
+	$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null
