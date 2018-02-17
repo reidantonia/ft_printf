@@ -11,6 +11,6 @@ int			main()
 
 //	num = 2;
 	ft_printf("ME:HELLO %s %s %s %s", hii, cat, dog, lel);
-	//printf("\nCOMPUTER:HELLO %d\n", num);
+	printf("\nCOMPUTER: %s %s %s %s\n", hii, cat, dog, lel);
 	return (0);
 }

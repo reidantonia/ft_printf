@@ -20,13 +20,13 @@
 typedef struct		s_args
 {
 	char			id;
-	char			flag;
+//	char			flag;
 	int				code_length;
-	char			value_length;
-	char			*value;
-	int				width;
-	char			*align;
-	char			*zero_fill;
+//	char			value_length;
+//	char			*value;
+//	int				width;
+//	char			*align;
+//	char			*zero_fill;
 }					t_args;
 
 void				ft_printf(char *str, ...);

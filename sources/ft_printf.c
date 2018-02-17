@@ -13,21 +13,19 @@
 #include "../includes/ft_printf.h"
 #include <stdio.h>
 
-t_args	ft_process(char *str)
+struct	t_args	ft_process(char *str)
 {	
-	t_args	arg;
-	int		i;
+	struct t_args	arg;
+	//int		i;
 
-	i = 0;
-	//printf("The string is '%c'\n", str[0]);
+	//i = 0;
 	if (str[0] == 's')
 	{
 		arg.id = 's';
-		arg.code_length = 2;
-	//	printf("arg.id is '%c'\n", arg.id);
-		i++;
+		arg.code_length = 1;
+	//	i++;
 		return (arg);
-	}
+	}/*
 	else if (str[0] == '-' && str[i] != '\0')
 	{
 		arg.align = "left";
@@ -45,7 +43,7 @@ t_args	ft_process(char *str)
 		arg.width = ft_atoi(ft_strsub(str, 0, i));
 	}
 	arg.code_length = i;
-	free(str);
+	free(str);*/
 	return (arg);
 }
 
@@ -69,35 +67,31 @@ void	ft_printf(char *argstr, ...)
 	i = 0;
 	argnum = 0;
 	str = ft_strdup(argstr);
-	while (str && str[i] != '\0')
+	while (str[i] && str[i] != '\0')
 	{
 		if (str[i] == '%')
 			argnum++;
 		i++;
 	}
-	printf("num of args is %d\n", argnum);
+	printf("num of args is %d\noriginal: '%s'\n\n", argnum, str);
 	arg = (t_args*)ft_strnew(argnum + 1);
-	i = 0;
 	argnum = 0;
-	printf("original: '%s'\n\n", str);
-	while (str && str[i] != '\0')
+	
+	while (str && *str != '\0')
 	{
-		while (str && str[i] != '\0' && str[i] != '%')
+		while (str && *str != '\0' && *str != '%')
 		{
-			ft_putchar(str[i]);
-			i++;
+			ft_putchar(*str);
+			str++;
 		}
-		if (str[i] == '%')
+		if (*str == '%')
 		{
 			argnum++;
-			arg[argnum] = ft_process(ft_strsub(str, i, ft_strlen(str)));
-			printf("\nargnum is %d\nstr is %s\n", argnum, str);
-			ft_print_arg(arg[argnum], str);
-			str = va_arg(argptr, char *);
-		//	i++;
-			i = i + arg[argnum].code_length;
-			//printf("I'M HERE");fflush(stdout);
+			argstr = va_arg(argptr, char *);
+		arg[argnum] = ft_process(ft_strsub(str, 0, ft_strlen(str)));
+			//ft_print_arg(arg[argnum], argstr);
+			str++;
 		}
-		i++;
 	}
+printf("\n*********************************************\n\n");
 }
