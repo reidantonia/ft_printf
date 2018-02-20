@@ -17,4 +17,4 @@ a.out
 *.swp
 
 # main
-main.c
+#main.c
