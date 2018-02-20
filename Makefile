@@ -37,25 +37,25 @@ OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 all : $(NAME)
 
 $(NAME): $(OBJ)
-	make -C libft/ fclean && make -C libft/
-	$(CC) -o $@ $^ $(LDFLAGS) $(LDLIBS)
+	@(make -C libft/ fclean && make -C libft/)
+	@($(CC) -o $@ $^ $(LDFLAGS) $(LDLIBS))
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	mkdir $(OBJ_PATH) 2> /dev/null
-	$(CC) -o $@ $(SRC) $(CPPFLAGS) $(CFLAGS)
+	@(@mkdir $(OBJ_PATH) 2> /dev/null)
+	$(CC) $< $(CFLAGS)
 	#@$(CC) $(CFLAGS) -o $@ $< $(CPPFLAGS)
 
 clean:
-	rm -fv $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || true
-	make -C libft/ clean
+	@(rm -fv $(OBJ))
+	@(@rmdir $(OBJ_PATH) 2> /dev/null || true)
+	@(make -C libft/ clean)
 
 fclean: clean
-	rm -fv $(NAME)
-	make -C libft/ fclean
+	@(rm -fv $(NAME))
+	@(make -C libft/ fclean)
 
 re : fclean all
-	make -C libft/ re
+	@(make -C libft/ re)
 
 .PHONY : all, fclean, clean, re
 

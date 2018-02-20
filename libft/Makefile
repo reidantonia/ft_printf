@@ -73,14 +73,14 @@ FLAGS = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME):
-	gcc $(FLAGS) -c $(SRCS) -I $(INCLUDE)
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
+	@(gcc $(FLAGS) -c $(SRCS) -I $(INCLUDE))
+	@(ar rc $(NAME) $(OBJS))
+	@(ranlib $(NAME))
 
 clean:
-	/bin/rm -f $(OBJS)
+	@(/bin/rm -f $(OBJS))
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@(/bin/rm -f $(NAME))
 
 re: fclean all
