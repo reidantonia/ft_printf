@@ -17,17 +17,13 @@ SRC_PATH = sources
 
 SRC_NAME = ft_printf.c
 
-CPPFLAGS = -Iincludes
+HEADER = includes
 
 OBJ_PATH = sources
 
 CFLAGS = -Wall -Werror -Wextra
 
 CC = gcc
-
-LDFLAGS = -Llibft
-
-LDLIBS = -lft
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -37,31 +33,29 @@ OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 all : $(NAME)
 
 $(NAME): $(OBJ)
-	@(make -C libft/ fclean && make -C libft/)
-	@($(CC) -o "$@" $^ $(LDFLAGS) $(LDLIBS))
+	@(make -s -C libft/ fclean && make -s -C libft/)
+#@(cp libft/libft.a ./$(NAME))
+	@(ar rc $(NAME) $(OBJ))
+	@(ranlib $(NAME))
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@(@mkdir $(OBJ_PATH) 2> /dev/null)
-	
-	$(CC)	
-	
-	#$(CC) -o $(NAME) $(CFLAGS) $(SRC)
-	#@$(CC) $(CFLAGS) -o $@ $< $(CPPFLAGS)
+#$(OBJ_PATH)%.o): $(SRC_PATH)%.c
+#@(mkdir $(OBJ_PATH) 2> /dev/null)
+#@(gcc $(CFLAGS) -I $(HEADER) -o $@ -c $<)
 
 clean:
 	@(rm -fv $(OBJ))
-	@(@rmdir $(OBJ_PATH) 2> /dev/null || true)
-	@(make -C libft/ clean)
+	@(rmdir $(OBJ_PATH) 2> /dev/null || true)
+	@(make -s -C libft/ clean)
 
 fclean: clean
 	@(rm -fv $(NAME))
-	@(make -C libft/ fclean)
+	@(make -s -C libft/ fclean)
 
 re : fclean all
-	@(make -C libft/ re)
+	@(make -s -C libft/ re)
 
-.PHONY : all, fclean, clean, re
+#.PHONY : all, fclean, clean, re
 
 norme :
-	norminette $(SRC)
-	norminette $(INC_PATH)*.h
+	@norminette $(SRC)
+	@norminette $(INC_PATH)*.h
