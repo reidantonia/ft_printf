@@ -15,3 +15,6 @@ a.out
 
 # rubbish
 *.swp
+
+# main
+main.c
