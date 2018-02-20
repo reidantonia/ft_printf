@@ -15,7 +15,6 @@ NAME = libftprintf.a
 
 SRC_PATH = sources
 
-#SRC_NAME = ft_printf.c main.c
 SRC_NAME = ft_printf.c
 
 CPPFLAGS = -Iincludes
@@ -42,8 +41,9 @@ $(NAME): $(OBJ)
 	$(CC) -o $@ $^ $(LDFLAGS) $(LDLIBS)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@mkdir $(OBJ_PATH) 2> /dev/null
-	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+	mkdir $(OBJ_PATH) 2> /dev/null
+	$(CC) -o $@ $(SRC) $(CPPFLAGS) $(CFLAGS)
+	#@$(CC) $(CFLAGS) -o $@ $< $(CPPFLAGS)
 
 clean:
 	rm -fv $(OBJ)
@@ -60,5 +60,5 @@ re : fclean all
 .PHONY : all, fclean, clean, re
 
 norme :
-	norminette $(SRCS)
+	norminette $(SRC)
 	norminette $(INC_PATH)*.h
