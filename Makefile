@@ -11,12 +11,12 @@
 # **************************************************************************** #
 
 #NAME = a.out
-
 NAME = libftprintf.a
 
 SRC_PATH = sources
 
-SRC_NAME = ft_printf.c main.c
+#SRC_NAME = ft_printf.c main.c
+SRC_NAME = ft_printf.c
 
 CPPFLAGS = -Iincludes
 
