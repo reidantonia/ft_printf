@@ -38,11 +38,14 @@ all : $(NAME)
 
 $(NAME): $(OBJ)
 	@(make -C libft/ fclean && make -C libft/)
-	@($(CC) -o $@ $^ $(LDFLAGS) $(LDLIBS))
+	@($(CC) -o "$@" $^ $(LDFLAGS) $(LDLIBS))
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@(@mkdir $(OBJ_PATH) 2> /dev/null)
-	$(CC) $< $(CFLAGS)
+	
+	$(CC)	
+	
+	#$(CC) -o $(NAME) $(CFLAGS) $(SRC)
 	#@$(CC) $(CFLAGS) -o $@ $< $(CPPFLAGS)
 
 clean:
