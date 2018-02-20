@@ -13,58 +13,20 @@
 #include "../includes/ft_printf.h"
 #include <stdio.h>
 
-struct t_args	ft_process(char *str, t_args arg)
-{	
-	//struct t_args	arg;
-	
-	arg.code_length = 1;
-	arg.id = 's';
-	/*//int		i;
-
-	//i = 0;
-	if (str[0] == 's')
-	{
-		arg.id = 's';
-		arg.code_length = 1;
-	//	i++;
-		return (arg);
-	}
-	else if (str[0] == '-' && str[i] != '\0')
-	{
-		arg.align = "left";
-		i++;
-	}
-	else if (str[0] == '0' && str[i] != '\0')
-	{
-		arg.zero_fill = "yes";
-		i++;
-	}
-	if (ft_isdigit(str[i]) && str[i] != '0' && str[i] != '\0')
-	{
-		while (ft_isdigit(str[i]) && str[i] != '\0')
-			i++;
-		arg.width = ft_atoi(ft_strsub(str, 0, i));
-	}
-	arg.code_length = i;
-	free(str);*/
-	return (arg);
-}
-
-void	ft_print_arg(t_args arg, char *str)
+void	ft_print_arg(char * argstr, char *str)
 {
-	if (arg.id == 's')
+	if (*str == 's')
 	{
-		ft_putstr(str);
+		ft_putstr(argstr);
 	}
 }
 
 void	ft_printf(char *argstr, ...)
 {
-	int			i;
-	int			argnum;
-	va_list		argptr;
-	t_args		*arg;
-	char		*str;
+	int					i;
+	int					argnum;
+	va_list				argptr;
+	char				*str;
 
 	va_start(argptr, argstr);
 	i = 0;
@@ -76,8 +38,6 @@ void	ft_printf(char *argstr, ...)
 			argnum++;
 		i++;
 	}
-	printf("num of args is %d\noriginal: '%s'\n\n", argnum, str);
-	arg = (t_args*)ft_strnew(argnum + 1);
 	argnum = 0;
 	
 	while (str && *str != '\0')
@@ -89,12 +49,11 @@ void	ft_printf(char *argstr, ...)
 		}
 		if (*str == '%')
 		{
+			str++;
 			argnum++;
 			argstr = va_arg(argptr, char *);
-			arg[argnum] = ft_process(ft_strsub(str, 0, ft_strlen(str)), arg);
-			//ft_print_arg(arg[argnum], argstr);
+			ft_print_arg(argstr, str);
 			str++;
 		}
 	}
-printf("\n*********************************************\n\n");
 }
