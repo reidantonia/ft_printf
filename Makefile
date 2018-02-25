@@ -35,7 +35,7 @@ $(NAME): $(OBJ)
 	@cp libft/libft.a ./$(NAME)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "\033[0;32;1mCompiled ><(((('>"
+	@echo "\033[1;32;7mCompiled ><(((('>"
 	
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir -p temporary
@@ -45,13 +45,13 @@ clean:
 	@rm -f $(OBJ)
 	@rm -rf $(OBJ_PATH)
 	@make -s clean -C $(LIBFT)
-	@echo "\033[1;33m===> \033[0;31;1m'$(OBJ_PATH)' folder, containing .o's removed \033[1;33m¸,.ø¤º°º¤ø.,¸,.ø¤º°\033[0m"
-	@echo "\033[1;33m===> \033[0;31;1m$(LIBFT) cleaned \033[1;33m¸,.ø¤º°º¤ø.,¸,.ø¤º°\033[0m"
+	@echo "\033[1;33m===> \033[0;31;1m'$(OBJ_PATH)' folder, containing .o's removed \033[1;33m¸,.ø¤º'°'º¤ø.,¸,.ø¤º'°\033[0m"
+	@echo "\033[1;33m===> \033[0;31;1m$(LIBFT) cleaned \033[1;33m¸,.ø¤º'°'º¤ø.,¸,.ø¤º'°\033[0m"
 
 fclean: clean
 	@rm -f $(NAME)
 	@make -s fclean -C $(LIBFT)
-	@echo "\033[1;33m===> \033[0;31;1m$(NAME) removed \033[1;33m¸,.ø¤º°º¤ø.,¸,.ø¤º°\033[0m"
+	@echo "\033[1;33m===> \033[0;31;1m$(NAME) removed \033[1;33m¸,.ø¤º'°'º¤ø.,¸,.ø¤'º°\033[0m"
 
 re: fclean all
 
