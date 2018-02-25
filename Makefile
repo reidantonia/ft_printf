@@ -23,7 +23,7 @@ OBJ_PATH = temporary
 HEADER = includes
 
 SOURCES = 	ft_printf.c \
-			main.c		\
+#			main.c		\
  
 SRC = $(addprefix $(SRC_PATH)/,$(SOURCES))
 OBJ = $(addprefix $(OBJ_PATH)/,$(SOURCES:.c=.o))
