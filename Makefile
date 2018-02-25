@@ -9,53 +9,55 @@
 #    Updated: 2018/02/12 09:46:14 by areid            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-#NAME = a.out
+ 
 NAME = libftprintf.a
+ 
+FLAGS = -Wall -Wextra -Werror
+ 
+LIBFT = libft
 
 SRC_PATH = sources
-
-SRC_NAME = ft_printf.c
-
+ 
+OBJ_PATH = temporary
+ 
 HEADER = includes
 
-OBJ_PATH = sources
+SOURCES = 	ft_printf.c \
+			main.c		\
+ 
+SRC = $(addprefix $(SRC_PATH)/,$(SOURCES))
+OBJ = $(addprefix $(OBJ_PATH)/,$(SOURCES:.c=.o))
 
-CFLAGS = -Wall -Werror -Wextra
-
-CC = gcc
-
-OBJ_NAME = $(SRC_NAME:.c=.o)
-
-SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
-OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
-
-all : $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ)
-	@(make -s -C libft/ fclean && make -s -C libft/)
-#@(cp libft/libft.a ./$(NAME))
-	@(ar rc $(NAME) $(OBJ))
-	@(ranlib $(NAME))
-
-#$(OBJ_PATH)%.o): $(SRC_PATH)%.c
-#@(mkdir $(OBJ_PATH) 2> /dev/null)
-#@(gcc $(CFLAGS) -I $(HEADER) -o $@ -c $<)
+	@make -s -C $(LIBFT)
+	@cp libft/libft.a ./$(NAME)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "\033[0;32;1mCompiled ><(((('>"
+	
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+	@mkdir -p temporary
+	@gcc $(FLAGS) -I $(HEADER) -o $@ -c $<
 
 clean:
-	@(rm -fv $(OBJ))
-	@(rmdir $(OBJ_PATH) 2> /dev/null || true)
-	@(make -s -C libft/ clean)
+	@rm -f $(OBJ)
+	@rm -rf $(OBJ_PATH)
+	@make -s clean -C $(LIBFT)
+	@echo "\033[1;33m===> \033[0;31;1m'$(OBJ_PATH)' folder, containing .o's removed \033[1;33m¸,.ø¤º°º¤ø.,¸,.ø¤º°\033[0m"
+	@echo "\033[1;33m===> \033[0;31;1m$(LIBFT) cleaned \033[1;33m¸,.ø¤º°º¤ø.,¸,.ø¤º°\033[0m"
 
 fclean: clean
-	@(rm -fv $(NAME))
-	@(make -s -C libft/ fclean)
+	@rm -f $(NAME)
+	@make -s fclean -C $(LIBFT)
+	@echo "\033[1;33m===> \033[0;31;1m$(NAME) removed \033[1;33m¸,.ø¤º°º¤ø.,¸,.ø¤º°\033[0m"
 
-re : fclean all
-	@(make -s -C libft/ re)
+re: fclean all
 
-#.PHONY : all, fclean, clean, re
-
-norme :
-	@norminette $(SRC)
-	@norminette $(INC_PATH)*.h
+norme:
+	norminette ./libft/
+	@echo
+	norminette ./$(HEADER)/
+	@echo
+	norminette ./$(SRC_PATH)/

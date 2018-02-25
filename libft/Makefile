@@ -78,9 +78,9 @@ $(NAME):
 	@(ranlib $(NAME))
 
 clean:
-	@(/bin/rm -f $(OBJS))
+	@(rm -f $(OBJS))
 
 fclean: clean
-	@(/bin/rm -f $(NAME))
+	@(rm -f $(NAME))
 
 re: fclean all
