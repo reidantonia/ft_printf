@@ -23,7 +23,6 @@ OBJ_PATH = temporary
 HEADER = includes
 
 SOURCES = 	ft_printf.c \
-#			main.c		\
  
 SRC = $(addprefix $(SRC_PATH)/,$(SOURCES))
 OBJ = $(addprefix $(OBJ_PATH)/,$(SOURCES:.c=.o))
@@ -36,6 +35,7 @@ $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo "\033[1;32;7mCompiled ><(((('>"
+	@gcc -o a.out includes/ft_printf.h sources/ft_printf.c sources/main.c libft/libft.a
 	
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir -p temporary
