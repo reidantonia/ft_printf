@@ -29,7 +29,7 @@ typedef struct		s_args
 //	char			*zero_fill;
 }					t_args;
 
-void				ft_printf(char *str, ...);
+int					ft_printf(char *str, ...);
 int					ft_atoi(const char *s);
 char				*ft_strnew(size_t size);
 char				*ft_strdup(const char *src);
