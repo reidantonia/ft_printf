@@ -13,40 +13,63 @@
 #include "../includes/ft_printf.h"
 #include <stdio.h>
 
-int	ft_print_arg(char *argstr, char *str)
+void	ft_print_padding(int len)
 {
+	while (len)
+	{
+	ft_putchar(' ');
+	len--;
+	}
+}
+
+int		ft_max(int arglen, int padding_val)
+{
+	int max;
+
+	max = arglen;
+	if (padding_val > max)
+	max = padding_val;
+	return (max);
+}
+
+t_args	ft_print_arg(char *argstr, char *str)
+{
+	int padding_val;
+	int digits;
+	t_args	len;
+	int arglen;
+
+	len.value_length = 0;
+	padding_val = ft_atoi(str);
+	digits = ft_cntdigits(padding_val);
+	str = str + digits;
 	if (*str == 's')
 	{
+		arglen = ft_strlen(argstr);
+		ft_print_padding(padding_val-arglen);
 		ft_putstr(argstr);
+		len.value_length = ft_max(arglen, padding_val);
+		len.code_length = digits + 1;
 	}
-	else if (*str == '%' && argstr == NULL)
+	else if (*str == '%')
 	{
 		ft_putstr("%");
-		return (1);
+		len.code_length = 1;
+		len.value_length = 1;
 	}
-	return (ft_strlen(argstr));
+	return (len);
 }
 
 int	ft_printf(char *argstr, ...)
 {
-//	int					i;
-//	int					argnum;
 	va_list				argptr;
 	char				*str;
 	int					run_len;
+	t_args				ret;
 
 	va_start(argptr, argstr);
-//	i = 0;
-//	argnum = 0;
 	str = ft_strdup(argstr);
 	run_len = 0;
-//	while (str[i] && str[i] != '\0')
-//	{
-//		if (str[i] == '%' && str[i + 1] != '%')
-//			argnum++;
-//		i++;
-//	}
-//	argnum = 0;
 	while (str && *str != '\0')
 	{
 		while (str && *str != '\0' && *str != '%')
@@ -57,14 +80,14 @@ int	ft_printf(char *argstr, ...)
 		}
 		if (*str == '%')
 		{
+			
 			str++;
-			//argnum--;
-			if (!(argstr = va_arg(argptr, char *)))
-				argstr = NULL;
-			printf("argstr is %s\n\n", argstr);
-			run_len += ft_print_arg(argstr, str);
-			str++;
+			argstr = va_arg(argptr, char*);
+			ret = ft_print_arg(argstr, str);
+			run_len += ret.value_length;
+			str += ret.code_length;
 		}
 	}
+	va_end(argptr);
 	return (run_len);
 }

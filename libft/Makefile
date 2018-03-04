@@ -63,6 +63,7 @@ SRCS  = ft_memset.c		\
 		  ft_str_is_numeric.c	\
 		  ft_str_is_printable.c	\
 		  ft_str_is_uppercase.c	\
+		  ft_cntdigits.c
 
 INCLUDE = include
 

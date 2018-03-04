@@ -19,10 +19,10 @@
 
 typedef struct		s_args
 {
-	char			id;
+//	char			id;
 //	char			flag;
 	int				code_length;
-//	char			value_length;
+	char			value_length;
 //	char			*value;
 //	int				width;
 //	char			*align;
@@ -38,4 +38,5 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 size_t				ft_strlen(const char *s);
 void				ft_putchar(char c);
 void				ft_putstr(char const *str);
+int					ft_cntdigits(long long n);
 #endif
