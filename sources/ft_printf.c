@@ -13,6 +13,7 @@
 #include "../includes/ft_printf.h"
 #include <stdio.h>
 
+
 void	ft_print_padding(int len)
 {
 	while (len)
@@ -43,6 +44,10 @@ t_args	ft_print_arg(char *argstr, char *str)
 	padding_val = ft_atoi(str);
 	digits = ft_cntdigits(padding_val);
 	str = str + digits;
+	while (*str == ' ')
+	{
+	str++;
+	}
 	if (*str == 's')
 	{
 		arglen = ft_strlen(argstr);
