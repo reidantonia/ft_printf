@@ -6,39 +6,38 @@
 /*   By: areid <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 12:27:21 by areid             #+#    #+#             */
-/*   Updated: 2018/02/12 11:31:36 by areid            ###   ########.fr       */
+/*   Updated: 2018/03/29 09:14:15 by areid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include <stdio.h>
 
-
-void	ft_print_padding(int len)
+void		ft_print_padding(int len)
 {
 	while (len)
 	{
-	ft_putchar(' ');
-	len--;
+		ft_putchar(' ');
+		len--;
 	}
 }
 
-int		ft_max(int arglen, int padding_val)
+int			ft_max(int arglen, int padding_val)
 {
-	int max;
+	int		max;
 
 	max = arglen;
 	if (padding_val > max)
-	max = padding_val;
+		max = padding_val;
 	return (max);
 }
 
-t_args	ft_print_arg(char *argstr, char *str)
+t_args		ft_print_arg(char *argstr, char *str)
 {
-	int padding_val;
-	int digits;
+	int		padding_val;
+	int		digits;
 	t_args	len;
-	int arglen;
+	int		arglen;
 
 	len.value_length = 0;
 	padding_val = ft_atoi(str);
@@ -46,12 +45,12 @@ t_args	ft_print_arg(char *argstr, char *str)
 	str = str + digits;
 	while (*str == ' ')
 	{
-	str++;
+		str++;
 	}
 	if (*str == 's')
 	{
 		arglen = ft_strlen(argstr);
-		ft_print_padding(padding_val-arglen);
+		ft_print_padding(padding_val - arglen);
 		ft_putstr(argstr);
 		len.value_length = ft_max(arglen, padding_val);
 		len.code_length = digits + 1;
@@ -65,12 +64,12 @@ t_args	ft_print_arg(char *argstr, char *str)
 	return (len);
 }
 
-int	ft_printf(char *argstr, ...)
+int			ft_printf(char *argstr, ...)
 {
-	va_list				argptr;
-	char				*str;
-	int					run_len;
-	t_args				ret;
+	va_list	argptr;
+	char	*str;
+	int		run_len;
+	t_args	ret;
 
 	va_start(argptr, argstr);
 	str = ft_strdup(argstr);
@@ -85,7 +84,6 @@ int	ft_printf(char *argstr, ...)
 		}
 		if (*str == '%')
 		{
-			
 			str++;
 			argstr = va_arg(argptr, char*);
 			ret = ft_print_arg(argstr, str);
