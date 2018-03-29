@@ -6,7 +6,7 @@
 /*   By: areid <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/03 12:27:49 by areid             #+#    #+#             */
-/*   Updated: 2018/02/11 13:04:36 by areid            ###   ########.fr       */
+/*   Updated: 2018/03/29 09:19:17 by areid            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 
 typedef struct		s_args
 {
-//	char			id;
-//	char			flag;
-	int				code_length;
 	char			value_length;
-//	char			*value;
-//	int				width;
-//	char			*align;
-//	char			*zero_fill;
+	int				code_length;
+/*char			id;
+	char			flag;
+	char			*value;
+	int				width;
+	char			*align;
+	char			*zero_fill;*/
 }					t_args;
 
 int					ft_printf(char *str, ...);
