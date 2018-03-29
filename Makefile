@@ -6,7 +6,7 @@
 #    By: areid <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/11 10:38:16 by areid             #+#    #+#              #
-#    Updated: 2018/02/12 09:46:14 by areid            ###   ########.fr        #
+#    Updated: 2018/03/29 09:04:43 by areid            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
  
@@ -35,7 +35,7 @@ $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo "\033[1;32;7mCompiled ><(((('>"
-	@gcc -o a.out includes/ft_printf.h sources/ft_printf.c sources/main.c libft/libft.a
+	@gcc  includes/ft_printf.h sources/ft_printf.c sources/main.c libft/libft.a
 	
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir -p temporary
